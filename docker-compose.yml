@@ -19,13 +19,8 @@ services:
     volumes:
       - wp_data:/var/www/html
     restart: always
-    command: >
-      sh -c '
-        DB_HOSTNAME=$(getent hosts db | awk "{ print \$1 }")
-        export WORDPRESS_DB_HOST=$DB_HOSTNAME:3306
-        docker-entrypoint.sh apache2-foreground
-      '
     environment:
+      - WORDPRESS_DB_HOST=64c51e77c534fffea80f4f68_db
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
